@@ -5,18 +5,19 @@ const keyValueToString = ([key, value]) => {
   return `${key}=${value}`;
 };
 
-module.exports = {
-  queryString: (obj) => Object.entries(obj).map(keyValueToString).join("&"),
-  parse: (string) => {
-    return Object.fromEntries(
-      string.split("&").map((item) => {
-        let [key, value] = item.split("=");
+export function queryString(obj) {
+  return Object.entries(obj).map(keyValueToString).join("&");
+}
 
-        if (value.indexOf(",") > -1) {
-          value = value.split(",");
-        }
-        return [key, value];
-      })
-    );
-  },
-};
+export function parse(string) {
+  return Object.fromEntries(
+    string.split("&").map((item) => {
+      let [key, value] = item.split("=");
+
+      if (value.indexOf(",") > -1) {
+        value = value.split(",");
+      }
+      return [key, value];
+    })
+  );
+}
