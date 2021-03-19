@@ -1,0 +1,13 @@
+{
+  "name": "calculadora-tdd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --detectOpenHandles --passWithNoTests --watchAll"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.21",
+    "jest": "^26.6.3"
+  }
+}
