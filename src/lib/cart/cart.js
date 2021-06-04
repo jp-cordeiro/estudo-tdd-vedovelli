@@ -14,8 +14,20 @@ export default class Cart {
     this.items.push(item);
   }
   getTotal() {
+    const isDiscount = (item) => {
+      return (
+        item.condition &&
+        item.condition.percentage &&
+        item.quantity > item.condition.minimum
+      );
+    };
     return this.items.reduce((acc, item) => {
-      return acc.add(Money({ amount: item.quantity * item.product.price }));
+      const amount = Money({ amount: item.quantity * item.product.price });
+      let discount = Money({ amount: 0 });
+      if (isDiscount(item)) {
+        discount = amount.percentage(item.condition.percentage);
+      }
+      return acc.add(amount).subtract(discount);
     }, Money({ amount: 0 }));
   }
   remove(product) {
