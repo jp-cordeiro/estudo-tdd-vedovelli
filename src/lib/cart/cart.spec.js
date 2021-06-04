@@ -2,13 +2,17 @@ import Cart from './cart';
 
 describe('Cart', () => {
   let cart;
-  let product;
+  let product, product2;
 
   beforeEach(() => {
     cart = new Cart();
     product = {
       title: 'Action Figure Luffy',
       price: 35388,
+    };
+    product2 = {
+      title: 'Action Figure Zoro',
+      price: 12345,
     };
   });
 
@@ -40,6 +44,24 @@ describe('Cart', () => {
     });
 
     const totalExpected = 35388;
+
+    expect(cart.getTotal()).toEqual(totalExpected);
+  });
+
+  it('update total when a product gets included and then remove', () => {
+    cart.addItem({
+      product,
+      quantity: 2,
+    });
+
+    cart.addItem({
+      product: product2,
+      quantity: 1,
+    });
+
+    const totalExpected = 12345;
+
+    cart.remove(product);
 
     expect(cart.getTotal()).toEqual(totalExpected);
   });
