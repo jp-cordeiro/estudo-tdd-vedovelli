@@ -81,5 +81,36 @@ describe('Cart', () => {
 
       expect(cart.checkout()).toMatchSnapshot();
     });
+
+    it('return an object with the total and the list items when sumary is called', () => {
+      cart.addItem({
+        product,
+        quantity: 2,
+      });
+
+      cart.addItem({
+        product: product2,
+        quantity: 3,
+      });
+
+      expect(cart.sumary()).toMatchSnapshot();
+      expect(cart.getTotal()).toBeGreaterThan(0);
+    });
+
+    it('reset the cart when checkout is called', () => {
+      cart.addItem({
+        product,
+        quantity: 2,
+      });
+
+      cart.addItem({
+        product: product2,
+        quantity: 3,
+      });
+
+      cart.checkout();
+
+      expect(cart.getTotal()).toEqual(0);
+    });
   });
 });

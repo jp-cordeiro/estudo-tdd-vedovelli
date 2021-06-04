@@ -21,3 +21,25 @@ Object {
   "total": 107811,
 }
 `;
+
+exports[`Cart checkout() return an object with the total and the list items when sumary is called 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "product": Object {
+        "price": 35388,
+        "title": "Action Figure Luffy",
+      },
+      "quantity": 2,
+    },
+    Object {
+      "product": Object {
+        "price": 12345,
+        "title": "Action Figure Zoro",
+      },
+      "quantity": 3,
+    },
+  ],
+  "total": 107811,
+}
+`;
