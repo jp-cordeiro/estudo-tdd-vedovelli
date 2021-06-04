@@ -17,7 +17,7 @@ describe('Cart', () => {
   });
   describe('getTotal()', () => {
     it('return 0 when getTotal() is executed in a newly created instance', () => {
-      expect(cart.getTotal()).toEqual(0);
+      expect(cart.getTotal().getAmount()).toEqual(0);
     });
 
     it('multiply quantity and price and receive the total amount ', () => {
@@ -29,7 +29,7 @@ describe('Cart', () => {
       const totalExpected = 2 * 35388;
 
       cart.addItem(item);
-      expect(cart.getTotal()).toEqual(totalExpected);
+      expect(cart.getTotal().getAmount()).toEqual(totalExpected);
     });
 
     it('ensure no more than on product exists at a time', () => {
@@ -45,7 +45,7 @@ describe('Cart', () => {
 
       const totalExpected = 35388;
 
-      expect(cart.getTotal()).toEqual(totalExpected);
+      expect(cart.getTotal().getAmount()).toEqual(totalExpected);
     });
 
     it('update total when a product gets included and then remove', () => {
@@ -63,7 +63,7 @@ describe('Cart', () => {
 
       cart.remove(product);
 
-      expect(cart.getTotal()).toEqual(totalExpected);
+      expect(cart.getTotal().getAmount()).toEqual(totalExpected);
     });
   });
 
@@ -94,7 +94,7 @@ describe('Cart', () => {
       });
 
       expect(cart.sumary()).toMatchSnapshot();
-      expect(cart.getTotal()).toBeGreaterThan(0);
+      expect(cart.getTotal().getAmount()).toBeGreaterThan(0);
     });
 
     it('reset the cart when checkout is called', () => {
@@ -110,7 +110,7 @@ describe('Cart', () => {
 
       cart.checkout();
 
-      expect(cart.getTotal()).toEqual(0);
+      expect(cart.getTotal().getAmount()).toEqual(0);
     });
   });
 });
